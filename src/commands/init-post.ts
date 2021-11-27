@@ -2,6 +2,10 @@ import { readFileSync, writeFileSync } from 'fs'
 import Inquirer from 'inquirer'
 import slugify from 'slugify'
 
+interface Options {
+  editor: boolean,
+}
+
 interface Post {
   slug: string,
   title: string,
@@ -17,13 +21,12 @@ interface Answers {
   description: string,
   author: string,
   tags: string,
-  content: string,
 }
 
 /**
  * Create a new blog post.
  */
-export default async function () {
+export default async function (options: Options) {
   const meta = function () {
     try {
       return JSON.parse(readFileSync('./meta.json', 'utf-8')) as Post[]
@@ -55,14 +58,15 @@ export default async function () {
       name: 'tags',
       message: 'Tags',
       suffix: ':',
-    },
-    {
-      type: 'editor',
-      name: 'content',
-      message: 'Content',
-      suffix: ':',
     }
   ])
+
+  const content = options.editor ? (await Inquirer.prompt<{ content: string}>({
+    type: 'editor',
+    name: 'content',
+    message: 'Content',
+    suffix: ':',
+  })).content : undefined
 
   const slug = slugify(answers.title).toLowerCase()
   const post = {
@@ -78,7 +82,7 @@ export default async function () {
   meta.unshift(post)
 
   // Write the post
-  writeFileSync(post.content, answers.content, 'utf-8')
+  writeFileSync(post.content, content ?? '_Write your post here_.', 'utf-8')
 
   // Update the metadata file
   writeFileSync('./meta.json', JSON.stringify(meta, null, 2), 'utf-8')

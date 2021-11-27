@@ -16,8 +16,9 @@ program
 program
   .command('init:post')
   .description('create a new post')
-  .action(async () => {
-    await (await import('./commands/init-post.js')).default()
+  .option('--no-editor', 'skip editor', false)
+  .action(async (options) => {
+    await (await import('./commands/init-post.js')).default(options)
   })
 
 program.parse(process.argv)
