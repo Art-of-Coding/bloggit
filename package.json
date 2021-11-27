@@ -1,0 +1,47 @@
+{
+  "name": "bloggit",
+  "version": "0.2.0",
+  "description": "BlogGit is a headless blog which uses Git",
+  "type": "module",
+  "bin": {
+    "bloggit": "./bin/entry.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Art-of-Coding/bloggit.git"
+  },
+  "keywords": [
+    "blog",
+    "git"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Art of Coding <community@artofcoding.nl> (https://artofcoding.nl)",
+  "contributors": [
+    "Michiel van der Velde <michiel@michielvdvelde.nl> (https://michielvdvelde.nl)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Art-of-Coding/bloggit/issues"
+  },
+  "homepage": "https://github.com/Art-of-Coding/bloggit#readme",
+  "dependencies": {
+    "commander": "^8.3.0",
+    "inquirer": "^8.2.0",
+    "mkdirp": "^1.0.4",
+    "slugify": "^1.6.3"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.1.3",
+    "@types/mkdirp": "^1.0.2",
+    "@types/node": "^16.11.10"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
