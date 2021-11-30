@@ -23,6 +23,14 @@ npx bloggit init
 npx bloggit init:post
 ```
 
+### Generate a list of posts
+
+Generates a list of posts in markdown format.
+
+```
+npx bloggit generate
+```
+
 ## To do
 
 These are a list of features which will need to be added. Pull requests are

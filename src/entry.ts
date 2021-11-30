@@ -21,4 +21,12 @@ program
     await (await import('./commands/init-post.js')).default(options)
   })
 
+program
+  .command('generate')
+  .description('generate posts list')
+  .option('-o, --out <out>', 'where to output (default POSTS.md)')
+  .action(async (options) => {
+    await (await import('./commands/generate.js')).default(options)
+  })
+
 program.parse(process.argv)

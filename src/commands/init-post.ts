@@ -6,7 +6,7 @@ interface Options {
   editor: boolean,
 }
 
-interface Post {
+export interface Post {
   slug: string,
   title: string,
   description: string,
