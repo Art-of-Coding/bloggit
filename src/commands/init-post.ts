@@ -10,7 +10,10 @@ interface Post {
   slug: string,
   title: string,
   description: string,
-  author: string,
+  author: {
+    name: string,
+    email: string,
+  },
   tags: string[],
   published: string,
   content: string,
@@ -19,7 +22,10 @@ interface Post {
 interface Answers {
   title: string,
   description: string,
-  author: string,
+  author: {
+    name: string,
+    email: string,
+  },
   tags: string,
 }
 
@@ -50,8 +56,13 @@ export default async function (options: Options) {
       suffix: ':',
     },
     {
-      name: 'author',
-      message: 'Author',
+      name: 'author.name',
+      message: 'Author name',
+      suffix: ':',
+    },
+    {
+      name: 'author.email',
+      message: 'Author email',
       suffix: ':',
     },
     {
